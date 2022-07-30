@@ -1,5 +1,5 @@
 import os, base64
-import google_util
+from src.utils import _gmail_api
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 # dev dependencies
@@ -33,7 +33,7 @@ def email_meta():
 
 def start_send_service():
 
-    service = google_util.create_service(
+    service = _gmail_api.create_service(
             CLIENT_SECRET_FILE,
             API_NAME,
             API_VERSION,
