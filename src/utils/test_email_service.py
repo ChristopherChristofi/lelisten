@@ -6,7 +6,8 @@ from email.mime.text import MIMEText
 import dotenv
 import pathlib
 
-CLIENT_SECRET_FILE = 'client_secret.json'
+# dev - unlock for prod
+#CLIENT_SECRET_FILE = os.getenv('CLIENT_SECRETS')
 API_NAME = 'gmail'
 API_VERSION = 'v1'
 SCOPES = ['https://mail.google.com/']
@@ -32,6 +33,9 @@ def email_meta():
     return email_meta
 
 def start_send_service():
+    
+    # dev variable init
+    CLIENT_SECRET_FILE = os.getenv('CLIENT_SECRETS')
 
     service = _gmail_api.create_service(
             CLIENT_SECRET_FILE,
@@ -51,7 +55,6 @@ def start_send_service():
     print("email should have been sent to: %s" % (struct_email.get('target')))
 
 def serve_mail(path):
-    print(path)
     # dev
     dotenv.load_dotenv(dotenv_path=pathlib.Path(path))
     start_send_service()
