@@ -15,7 +15,7 @@ email alert service daemon
 
 ## Installation:
 
-Set up a project with Google cloud and Gmail API enabled, to gain API access credentials (client_secret.json).
+Set up a project with Google cloud and Gmail API enabled, to gain API access credentials (*client secrets*.json).
 
 ```sh
 python3 -m venv venv
@@ -31,26 +31,20 @@ Use build option to generate process for build environment variables, that refer
 - sender email address
 - recipient email address
 - email message
-- subject.
+- subject
+- filename for clients secrets
 
 ```sh
 lelisten -b
 ```
 
-The above command will build the .env file (current default naming='.lelisten.env') in your home directory.
+The above command will build both the .lelisten directory and contained .lelisten.env file within your home directory. Place your Gmail api secrets in the created .lelisten directory (default naming='google_client_secret.json', path is saved to the .lelisten.env, naming can be set with --build/-b command or written directly in the .lelisten.env file).
 
 ```sh
 lelisten -r
 ```
 
-The above command will instantiate the email service and message send service using the provided environment variables.
-The path of the .env variable can be set with the [ --path / -p ] option.
-
-```sh
-lelisten -brp /<set>/<path>/<relative>/<to>/<home>
-```
-
-Above command demonstrates build, send message service and environment path setting (remove --build/-b and this could be a read option of an already .env file in a predetermined file location).
+The above command will instantiate the email service and message send service using the provided environment variables. Without the --build/-b, this could be a read option of an already existing .lelisten.env file in the .lelisten directory of your home folder.
 
 For more information:
 
